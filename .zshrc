@@ -79,6 +79,9 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 
+# Atalhos para sair do modo insert
+bindkey 'jk' vi-cmd-mode 
+
 alias update-dotfiles='~/dotfiles/scripts/update.sh'
 
 alias zj='zellij'
