@@ -1,0 +1,14 @@
+# Fonte e tamanho
+font-family = JetBrainsMono Nerd Font
+font-size = 20
+
+# Tema principal (Catppuccin Mocha)
+theme = Catppuccin Mocha
+
+# Desativa o prompt de confirmação ao colar
+clipboard-paste-protection = false
+clipboard-paste-bracketed-safe = false
+
+command = /bin/zsh --login
+
+background-opacity = 0.9
