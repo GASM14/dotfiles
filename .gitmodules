@@ -1,0 +1,3 @@
+[submodule ".config/wezterm"]
+	path = .config/wezterm
+	url = git@github.com:GASM14/Wezterm-Config.git
