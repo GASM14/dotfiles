@@ -37,7 +37,15 @@ alias ls='eza --icons'
 alias ll='eza -l --icons'
 alias la='eza -la --icons'
 alias tree='eza --tree --icons'
-alias cat='batcat'
+# Alias cat -> bat (Fedora) ou batcat (Debian)
+if command -v batcat &> /dev/null; then
+    alias cat='batcat'
+elif command -v bat &> /dev/null; then
+    alias cat='bat'
+else
+    alias cat='cat'
+fi
+
 alias find='fdfind'
 alias grep='rg'
 
@@ -74,10 +82,13 @@ alias update='sudo apt update && sudo apt upgrade -y'
 alias clean='sudo apt autoremove -y && sudo apt autoclean'
 alias reload='exec zsh'
 
-# FZF
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+# FZF (usa scripts locais ~/.fzf/shell)
+if [ -f ~/.fzf/shell/key-bindings.zsh ]; then
+    source ~/.fzf/shell/key-bindings.zsh
+    source ~/.fzf/shell/completion.zsh
+else
+    echo "Aviso: integração do fzf não encontrada. Execute ~/.fzf/install"
+fi
 
 # Atalhos para sair do modo insert
 bindkey 'jk' vi-cmd-mode 
@@ -85,3 +96,5 @@ bindkey 'jk' vi-cmd-mode
 alias update-dotfiles='~/dotfiles/scripts/update.sh'
 
 alias zj='zellij'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
