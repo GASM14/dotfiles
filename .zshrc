@@ -40,6 +40,7 @@ alias ls='eza --icons'
 alias ll='eza -l --icons'
 alias la='eza -la --icons'
 alias tree='eza --tree --icons'
+<<<<<<< HEAD
 # Alias cat -> bat (Fedora) ou batcat (Debian)
 if command -v batcat &> /dev/null; then
     alias cat='batcat'
@@ -49,8 +50,16 @@ else
     alias cat='cat'
 fi
 
+=======
+>>>>>>> b29a98a (Adiciona aliases cat (sem pager) e bat (com pager) para batcat)
 alias find='fdfind'
 alias grep='rg'
+
+# cat sem pager (comportamento tipo cat, com cores)
+alias cat='batcat --paging=never'
+
+# bat com pager (comportamento original, com rolagem)
+alias bat='batcat'
 
 # Navegação
 alias ..='cd ..'
@@ -99,5 +108,10 @@ bindkey 'jk' vi-cmd-mode
 alias update-dotfiles='~/dotfiles/scripts/update.sh'
 
 alias zj='zellij'
+<<<<<<< HEAD
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+=======
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+>>>>>>> b29a98a (Adiciona aliases cat (sem pager) e bat (com pager) para batcat)
