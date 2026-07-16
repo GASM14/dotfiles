@@ -1,3 +1,6 @@
 [submodule ".config/wezterm"]
 	path = .config/wezterm
-	url = git@github.com:GASM14/Wezterm-Config.git
+	url = https://github.com/GASM14/Wezterm-Config.git
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/GASM14/NVim-Config.git
