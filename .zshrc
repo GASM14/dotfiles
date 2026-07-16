@@ -4,14 +4,11 @@ export PATH="$HOME/.local/bin:$PATH"
 # Starship prompt
 eval "$(starship init zsh)"
 
-# Vi-mode (navegação estilo Vim) - CORRIGIDO
+# Vi-mode (navegação estilo Vim)
 bindkey -v
 export KEYTIMEOUT=1
-
-# Atalho para sair do modo insert (jk)
 bindkey 'jk' vi-cmd-mode
 
-# Forçar o Starship a atualizar o prompt ao mudar de modo
 function zle-keymap-select {
     zle reset-prompt
 }
@@ -21,12 +18,13 @@ zle -N zle-keymap-select
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# (Opcional) Alias úteis
+# Aliases base
 alias ll='ls -la'
 alias ..='cd ..'
 
 export GHOSTTY_CONFIG="$HOME/.config/ghostty"
 
+# Histórico
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -40,33 +38,27 @@ alias ls='eza --icons'
 alias ll='eza -l --icons'
 alias la='eza -la --icons'
 alias tree='eza --tree --icons'
-<<<<<<< HEAD
-# Alias cat -> bat (Fedora) ou batcat (Debian)
-if command -v batcat &> /dev/null; then
-    alias cat='batcat'
-elif command -v bat &> /dev/null; then
-    alias cat='bat'
-else
-    alias cat='cat'
-fi
-
-=======
->>>>>>> b29a98a (Adiciona aliases cat (sem pager) e bat (com pager) para batcat)
 alias find='fdfind'
 alias grep='rg'
 
-# cat sem pager (comportamento tipo cat, com cores)
-alias cat='batcat --paging=never'
-
-# bat com pager (comportamento original, com rolagem)
-alias bat='batcat'
+# Aliases condicionais para cat/bat (funciona em Debian e Fedora)
+if command -v batcat &> /dev/null; then
+    alias cat='batcat --paging=never'
+    alias bat='batcat'
+elif command -v bat &> /dev/null; then
+    alias cat='bat --paging=never'
+    alias bat='bat'
+else
+    alias cat='cat'
+    alias bat='cat'
+fi
 
 # Navegação
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# Zoxide (cd inteligente)
+# Zoxide
 eval "$(zoxide init zsh)"
 
 # History substring search
@@ -85,7 +77,7 @@ alias gd='git diff'
 alias gl='git log --oneline --graph'
 alias lg='lazygit'
 
-# Docker (se usar)
+# Docker
 alias d='docker'
 alias dc='docker-compose'
 
@@ -94,24 +86,25 @@ alias update='sudo apt update && sudo apt upgrade -y'
 alias clean='sudo apt autoremove -y && sudo apt autoclean'
 alias reload='exec zsh'
 
-# FZF (usa scripts locais ~/.fzf/shell)
+# FZF (procura em vários locais)
 if [ -f ~/.fzf/shell/key-bindings.zsh ]; then
     source ~/.fzf/shell/key-bindings.zsh
     source ~/.fzf/shell/completion.zsh
-else
-    echo "Aviso: integração do fzf não encontrada. Execute ~/.fzf/install"
+elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+elif [ -f /usr/share/fzf/shell/key-bindings.zsh ]; then
+    source /usr/share/fzf/shell/key-bindings.zsh
+    source /usr/share/fzf/shell/completion.zsh
 fi
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 
-# Atalhos para sair do modo insert
-bindkey 'jk' vi-cmd-mode 
+# Atalhos
+bindkey 'jk' vi-cmd-mode
 
+# Aliases personalizados
 alias update-dotfiles='~/dotfiles/scripts/update.sh'
-
 alias zj='zellij'
-<<<<<<< HEAD
 
+# Carregar integração do fzf (se existir)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-=======
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
->>>>>>> b29a98a (Adiciona aliases cat (sem pager) e bat (com pager) para batcat)
