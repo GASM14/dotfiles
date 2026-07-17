@@ -38,8 +38,16 @@ alias ls='eza --icons'
 alias ll='eza -l --icons'
 alias la='eza -la --icons'
 alias tree='eza --tree --icons'
-alias find='fdfind'
 alias grep='rg'
+
+# Aliases modernos
+if command -v fdfind &> /dev/null; then
+    alias find='fdfind'
+elif command -v fd &> /dev/null; then
+    alias find='fd'
+else
+    alias find='find'
+fi
 
 # Aliases condicionais para cat/bat (funciona em Debian e Fedora)
 if command -v batcat &> /dev/null; then
